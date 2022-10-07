@@ -1,6 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { Role } from "./role.schema";
+import { PartialType } from "@nestjs/mapped-types";
+import { ClientDto } from "../controllers/client/client.dto";
 
 export type UserDocument = User & Document;
 
@@ -27,3 +29,4 @@ export class User {
 }
 
 export const userSchema = SchemaFactory.createForClass(User);
+export class PartialUser extends PartialType(User) {}

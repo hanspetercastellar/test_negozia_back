@@ -37,7 +37,9 @@ export class UserController {
         password: hashedPassword,
       });
       return res.status(200).json(userCreated);
-    } catch (e) {}
+    } catch (e) {
+      return res.status(400).json(e);
+    }
   }
 
   @Put(':id')

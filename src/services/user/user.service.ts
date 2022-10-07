@@ -10,6 +10,11 @@ export class UserService {
   }
 
   async create(createDto: CreateDto): Promise<User> {
+    const exists = await this.userModel.findOne({ email: createDto.email });
+    if (exists) {
+      console.log('User already exists');
+      throw new NotFoundException(`User already exists`);
+    }
     const createUser = new this.userModel(createDto);
     return createUser.save();
   }
